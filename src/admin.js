@@ -17,6 +17,7 @@ export default class Admin extends React.Component{
                     <Header/>   
                     <Row className="content">
                         {/* <Home/>  */}
+                        {/* 这是很关键,根据子渲染这部分的组件 */}
                         {this.props.children}
                     </Row>
                     <Footer/>

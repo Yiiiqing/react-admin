@@ -1,0 +1,22 @@
+@import '../style/default.less';
+.container{
+    // display: flex;
+    .nav-left{
+        // width:15%;
+        // min-width: 180px;
+        height: calc(100vh);
+        background-color:#001529;
+        color:white;
+    }
+    .main{
+        // flex: 1;
+        height: calc(100vh);
+        background-color: @background;
+        //主界面滚动
+        overflow: auto;
+    }
+    .content{
+        position: relative;
+        padding: 20px;
+    }
+}

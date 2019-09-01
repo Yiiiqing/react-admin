@@ -1,7 +1,7 @@
 import React from 'react'
 import {Card,Button, Radio} from 'antd'
 import'./ui.less'
-export default class Home extends React.Component{
+export default class Buttons extends React.Component{
     state = {
         loading:true,
         size:'default',

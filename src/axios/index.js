@@ -42,6 +42,7 @@ export default class Axios{
                 }
                 if(response.status === 200){
                     let res = response.data
+                    //拦截器
                     if(res.code === 0){
                         resolve(res);
                     }else{

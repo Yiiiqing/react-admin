@@ -6,6 +6,19 @@
         line-height: 60px;
         padding: 0 20px;
         text-align: right;
+        .logo{
+            line-height: 60px;
+            text-align: left;
+            font-size: 18px;
+            img{
+                height: 40px;
+                vertical-align: middle;
+            }
+            span{
+                margin-left: 5px;
+                color:white;
+            }
+        };
         a {
             margin-left: 40px;
         }
@@ -44,6 +57,26 @@
             .weather-detail{
                 margin-left: 5px;
             }
+        }
+    }
+}
+///common页面简单头
+.simple-page{
+    .header-top{
+        background-color:#1890ff;
+        color:@colorM;
+    }
+    .ant-form,
+    .ant-col-12,
+    .weather{
+        display:none;
+    }
+    .ant-col-24{
+        position: absolute;
+        top:0;
+        width:95%;
+        a{
+            color:@colorP;
         }
     }
 }

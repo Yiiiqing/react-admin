@@ -47,7 +47,6 @@ export default class BasicTable extends React.Component{
         ]
         //循环添加key
         dataSource.map((item,index) =>{
-            console.log(112)
             item.key = index;
         })
         this.setState({
@@ -101,7 +100,6 @@ export default class BasicTable extends React.Component{
     }
     handleDelete = () => {
         let rows = this.state.selectedRows;
-        console.log(rows)
         let ids = [];
         rows.map((item)=>{
             ids.push(item.id)
@@ -189,7 +187,6 @@ export default class BasicTable extends React.Component{
             onChange:(selectedRowKeys,selectedRows)=>{
                 let ids = [];
                 // console.log(ids)
-                console.log(selectedRows)
                 selectedRows.map((item)=>{
                     ids.push(item.id)
                 })

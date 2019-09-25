@@ -1,5 +1,17 @@
 @import '../style/default.less';
 @import './loading.less';
+ul,li{
+    list-style: none;
+}
+// 清除浮动!!!!
+.clearfix{
+    &::after{
+        content:' ';
+        clear:both;
+        display:block;
+        visibility: hidden;
+    }
+}
 .container{
     // display: flex;
     .nav-left{
@@ -32,4 +44,12 @@
         margin-right: -2px;
         
     }
+}
+.simple-content{
+    border: 1px solid #e8e8e8;
+    width:90vw;
+    height: 30vh;
+    position: relative;
+    top:10vh;
+    left: 5vw;
 }

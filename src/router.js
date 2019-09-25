@@ -18,12 +18,15 @@ import BasicTable from './pages/table/basicTable';
 import HighTable from './pages/table/highTable'
 import City from './pages/city'
 import Order from './pages/order'
+import OrderDetail from './pages/order/detail'
+import Common from './common'
 export default class MyRouter extends React.Component{
 
     render(){
         return(
             <HashRouter>
                 {/*子组件不能写很多个route,必须要根组件包裹 */}
+                {/* App.js是一切的入口,然后根据路由分发 */}
                 <App>
                     <Route path="/login" component={Login}/>
                     {/* 子路由用render来嵌套 */}
@@ -44,12 +47,18 @@ export default class MyRouter extends React.Component{
                                 <Route path="/admin/table/high" component={HighTable}/>
                                 <Route path="/admin/city" component={City}/>
                                 <Route path="/admin/order" component={Order}/>
-
                                 <Route component={NoMatch}/>
                             </Switch>
                         </Admin>
                     }/>
-                    <Route path="/order/detail" component={Login}/>
+                    <Route path="/common" render={()=>
+                        <Common>
+                            <Switch>
+                                <Route path="/common/order/detail/:orderId" component={OrderDetail}/>
+                                <Route component={NoMatch}/>
+                            </Switch>
+                        </Common>
+                    }/>
                 </App>
             </HashRouter>
         );

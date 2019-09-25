@@ -31,7 +31,6 @@ export default class HighTable extends React.Component{
             res.result.list.map((item,index)=>{
                 item.key = index;
             })
-            console.log(res)
             this.setState({
                 dataSource:res.result.list,
             })

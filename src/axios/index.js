@@ -31,7 +31,7 @@ export default class Axios{
                 url:options.url,
                 method:'get',
                 baseURL:baseUrl,
-                timeout:5000,
+                timeout:5000,//超时
                 //参数
                 params:(options.data && options.data.params) || ''
             }).then((response)=>{

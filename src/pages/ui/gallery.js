@@ -6,7 +6,6 @@ export default class Gallery extends React.Component{
         visible:false
     }
     openGallery = (imgSrc) =>{
-        console.log(12)
         this.setState({
             visible:true,
             currentImg:'/gallery/'+imgSrc

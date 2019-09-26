@@ -1,7 +1,35 @@
-import JsonP from 'jsonp'
-import axios from 'axios'
+import JsonP from 'jsonp';
+import axios from 'axios';
 import { Modal } from 'antd';
+import Utils from './../utils/utils'
 export default class Axios{
+    static requestList(_this,url,params,isMock){
+        var data = {
+            params:params,
+        }
+        this.ajax({
+            url,
+            data,
+            isMock
+        }).then((data)=>{
+            if(data && data.result){
+                let list = data.result.item_list.map((item,index) => {
+                    item.key = index;
+                    return item;
+                });
+                //该_this为调用该方法的作用域
+                _this.setState({
+                    list,
+                    //设置分页
+                    pagination:Utils.pagination(data,(current)=>{
+                        _this.params.page = current;
+                        _this.requestList()
+                    })
+                })
+            }
+        })
+    }
+    //通过jsonp请求天气等
     static jsonp(options){
         return new Promise((resolve,reject)=>{
             JsonP(options.url,{
@@ -24,7 +52,13 @@ export default class Axios{
             loading = document.getElementById('ajaxLoading')
             loading.style.display = 'block';
         }
-        let baseUrl = 'https://www.easy-mock.com/mock/5d6f9857f16efd32ea5f0eec/mockapi';
+        //是Mock数据
+        let baseUrl = ''
+        if(options.isMock){
+            baseUrl = 'https://www.easy-mock.com/mock/5d6f9857f16efd32ea5f0eec/mockapi';
+        }else{
+            baseUrl = 'https://www.easy-mock.com/mock/5d6f9857f16efd32ea5f0eec/mockapi';
+        }
 
         return new Promise((resolve,reject)=>{
             axios({

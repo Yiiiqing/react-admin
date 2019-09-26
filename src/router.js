@@ -20,6 +20,7 @@ import City from './pages/city'
 import Order from './pages/order'
 import OrderDetail from './pages/order/detail'
 import Common from './common'
+import User from './pages/user'
 export default class MyRouter extends React.Component{
 
     render(){
@@ -47,6 +48,8 @@ export default class MyRouter extends React.Component{
                                 <Route path="/admin/table/high" component={HighTable}/>
                                 <Route path="/admin/city" component={City}/>
                                 <Route path="/admin/order" component={Order}/>
+                                <Route path="/admin/user" component={User}/>
+
                                 <Route component={NoMatch}/>
                             </Switch>
                         </Admin>

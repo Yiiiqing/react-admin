@@ -4,6 +4,7 @@ import Utils from '../../utils/utils'
 const FormItem = Form.Item
 const Option = Select.Option;
 
+
 class FilterForm extends React.Component{
     //提交
     handleFilterSubmit = () => {
@@ -36,9 +37,10 @@ class FilterForm extends React.Component{
                     formItemList.push(begin_time)
                     const end_time = <FormItem label="~" colon={false} key={field}>
                     {/* 用中括号!将field当成变量 */}
-                    {getFieldDecorator('end_time')(
+                    {
+                        getFieldDecorator('end_time')(
                         <DatePicker showTime={true} placeholder={placeholder} format="YYYY-MM-DD HH:mm:ss"/>
-                )}
+                    )}
                 </FormItem>
                 formItemList.push(end_time)
                 }
@@ -82,6 +84,15 @@ class FilterForm extends React.Component{
                     )}
                     </FormItem>
                     formItemList.push(CHECKBOX)
+                }else if(item.type === 'DATE'){
+                    const DATE = <FormItem label={label} key={field}>
+                        {/* 用中括号!将field当成变量 */}
+                        {
+                        getFieldDecorator([field])(
+                        <DatePicker showTime={true} placeholder={placeholder} format="YYYY-MM-DD HH:mm:ss"/>
+                    )}
+                    </FormItem>
+                    formItemList.push(DATE)
                 }
             })
         }

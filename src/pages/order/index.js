@@ -3,6 +3,7 @@ import { Card, Button, Table, Form, Select, Modal, message, DatePicker }from 'an
 import axios from '../../axios'
 import Utils from '../../utils/utils'
 import BaseForm from '../../components/BaseForm'
+import ETable from './../../components/ETable'
 const FormItem = Form.Item;
 const Option = Select.Option;
 export default class Order extends React.Component{
@@ -60,26 +61,26 @@ export default class Order extends React.Component{
         this.requestList()
     }
     requestList = () => {
-        let _this = this
-        axios.ajax({
-            url:'/order/list',
-            data:{
-                params:this.params//不仅仅是page,还有查询的东西
-            }
-        }).then((res)=>{
-            let list = res.result.item_list.map((item,index) => {
-                item.key = index;
-                return item;
-            });
-            this.setState({
-                list,
-                //设置分页
-                pagination:Utils.pagination(res,(current)=>{
-                    _this.params.page = current;
-                    _this.requestList()
-                })
-            })
-        })
+        axios.requestList(this,'/order/list',this.params,true)
+        // axios.ajax({
+        //     url:'/order/list',
+        //     data:{
+        //         params:this.params//不仅仅是page,还有查询的东西
+        //     }
+        // }).then((res)=>{
+        //     let list = res.result.item_list.map((item,index) => {
+        //         item.key = index;
+        //         return item;
+        //     });
+        //     this.setState({
+        //         list,
+        //         //设置分页
+        //         pagination:Utils.pagination(res,(current)=>{
+        //             _this.params.page = current;
+        //             _this.requestList()
+        //         })
+        //     })
+        // })
     }
     //订单结束确认
     handleConfirm = () => {
@@ -222,7 +223,7 @@ export default class Order extends React.Component{
                     <Button type="primary" style={{marginLeft:10}} onClick={this.handleConfirm}>结束订单</Button>
                 </Card>
                 <div className="content-wrap">
-                    <Table
+                    {/* <Table
                         bordered
                         columns={columns}
                         dataSource={this.state.list}
@@ -236,6 +237,16 @@ export default class Order extends React.Component{
                                 }
                             }
                         }}
+                    /> */}
+
+                    <ETable
+                        columns={columns}
+                        updateSelectedItem={Utils.updateSelectedItem.bind(this)}
+                        selectedRowKeys={this.state.selectedRowKeys}
+                        //selectedIds={this.state.selectedIds}
+                        selectedItem={this.state.selectedItem}
+                        dataSource={this.state.list}
+                        pagination={this.state.pagination}
                     />
                 </div>
                 <Modal

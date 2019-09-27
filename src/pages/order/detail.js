@@ -57,7 +57,7 @@ export default class OrderDetail extends React.Component{
             let last = positionList[positionList.length-1]
 
             startPoint = new window.BMap.Point(first.lon,first.lat)
-            let startIcon = new window.BMap.Icon('/assets/point05.png', new window.BMap.Size(36,42),{
+            let startIcon = new window.BMap.Icon('/assets/start_point.png', new window.BMap.Size(36,42),{
                 imageSize:new window.BMap.Size(36,42),
                 anchor:new window.BMap.Size(36,42)
             })
@@ -65,7 +65,7 @@ export default class OrderDetail extends React.Component{
             this.map.addOverlay(startMarker);
 
             endPoint = new window.BMap.Point(last.lon,last.lat)
-            let endIcon = new window.BMap.Icon('/assets/point03.png', new window.BMap.Size(36,42),{
+            let endIcon = new window.BMap.Icon('/assets/end_point.png', new window.BMap.Size(36,42),{
                 imageSize:new window.BMap.Size(36,42),
                 anchor:new window.BMap.Size(36,42)
             })

@@ -17,7 +17,8 @@ export default class Axios{
                     item.key = index;
                     return item;
                 });
-                //该_this为调用该方法的作用域
+                //该_this为调用该方法的作用域,直接就代替父组件设置了
+                console.log("::",list)
                 _this.setState({
                     list,
                     //设置分页

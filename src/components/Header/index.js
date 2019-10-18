@@ -3,8 +3,10 @@ import { Row, Col } from 'antd';
 import './index.less'
 import Util from '../../utils/utils'
 import Axios from '../../axios'
-export default class Header extends React.Component{
+import { connect } from 'react-redux'
 
+class Header extends React.Component{
+    state = {}
     componentWillMount(){
         this.setState({
             userName:'张一清'
@@ -58,7 +60,7 @@ export default class Header extends React.Component{
                     :
                     <Row className="breadcrumb">
                         <Col span={4} className="breadcrumb-title">
-                            首页
+                            {this.props.menuName}
                         </Col>
                         <Col span={20} className="weather">
                             <span className="date">{this.state.sysTime}</span>
@@ -76,3 +78,11 @@ export default class Header extends React.Component{
         )
     }
 }
+//回调方法,从state里面去取menuName
+const mapStateToProps = (state) => {
+    console.log("state",state)
+    return {
+        menuName:state.menuName
+    }
+}
+export default connect(mapStateToProps)(Header);//接收一个回调方法!

@@ -3,14 +3,36 @@ import { Menu, Icon} from 'antd';
 import {NavLink} from 'react-router-dom'
 import MenuConfig from './../../config/menuConfig';
 import './index.less'
+//引入redux
+import { connect } from 'react-redux' //连接器,用于连接redux和组件
+import { switchMenu } from './../../redux/action'//触发事件行为
+
 const SubMenu = Menu.SubMenu;
  
-export default class NavLeft extends React.Component{
+class NavLeft extends React.Component{
+    state = {
+        currentKey:''
+    }
+
+    //菜单点击
+    handleClick = (item) => {
+        const { dispatch } = this.props; //没有connect是拿不到的
+        console.log("item",item)
+        console.log("title:",item.item.props.title)
+        console.log("key:",item.key)
+        dispatch(switchMenu(item.item.props.title))
+        this.setState({
+            currentKey:item.key
+        })
+    }
     componentWillMount(){
         //Menuconfig 使用
         //递归
         const menuTreeNode = this.renderMenu(MenuConfig)
+        //来取到当前路由
+        let currentKey = window.location.hash.replace(/#|\?.*$/g,'');
         this.setState({
+            currentKey,
             menuTreeNode
         })
     }
@@ -38,7 +60,9 @@ export default class NavLeft extends React.Component{
                     <h1>Yiqing</h1>
                 </div>
                 <Menu
-                theme="dark">
+                    onClick={this.handleClick}
+                    selectedKeys={this.state.currentKey}
+                    theme="dark">
                     {this.state.menuTreeNode}
                     {/* <SubMenu
                     key="sub1"
@@ -59,3 +83,4 @@ export default class NavLeft extends React.Component{
         )
     }
 }
+export default connect()(NavLeft);//丢入redux,被其管理
